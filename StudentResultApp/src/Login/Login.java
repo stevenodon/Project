@@ -22,7 +22,7 @@ public class Login extends javax.swing.JFrame {
     String username = "root";
     String password = "Pa55w0rd!";
     String dataCon = "jdbc.mysql://localhost:3306/ResultsSystem";
-
+    
     Connection sqlCon = null;
     PreparedStatement preState = null;
     ResultSet resultSet = null;
@@ -65,6 +65,7 @@ public class Login extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 8, true));
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labTeachEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
@@ -111,6 +112,7 @@ public class Login extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Teacher", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
@@ -227,6 +229,7 @@ public class Login extends javax.swing.JFrame {
         interfaceAdmin.setVisible(true);
         interfaceAdmin.uploadDBStudentGrade();
         interfaceAdmin.uploadDBStudentInfo();
+        interfaceAdmin.uploadDBTeacherInfo();
         }
         else
         {
