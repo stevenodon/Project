@@ -153,7 +153,7 @@ public class AdminInter extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        TabbedPane = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -166,7 +166,7 @@ public class AdminInter extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         addNewStudInfo = new javax.swing.JButton();
         updateStudInfo = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        studDeleteButton = new javax.swing.JButton();
         jTxtStudFirstName = new javax.swing.JTextField();
         jTxtStudAddress = new javax.swing.JTextField();
         jTxtStudLastName = new javax.swing.JTextField();
@@ -194,7 +194,7 @@ public class AdminInter extends javax.swing.JFrame {
         jTxtSub5Pre = new javax.swing.JTextField();
         jTxtSub6Pre = new javax.swing.JTextField();
         updateStudGrade = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        gradeDeleteButton = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         jTxtStudGradeNum = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
@@ -212,7 +212,7 @@ public class AdminInter extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         addNewTeach = new javax.swing.JButton();
         UpdateTeach = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        teachDeleteButt = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTxtTeachNum = new javax.swing.JTextField();
         jTxtTeachFirstName = new javax.swing.JTextField();
@@ -226,17 +226,19 @@ public class AdminInter extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1118, 675));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("AdminInter");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setText("Administator Interface");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
 
-        jTabbedPane1.setBackground(new java.awt.Color(153, 255, 255));
-        jTabbedPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        TabbedPane.setBackground(new java.awt.Color(153, 153, 255));
+        TabbedPane.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
 
+        jStudentListTable.setBackground(new java.awt.Color(204, 255, 255));
         jStudentListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -252,9 +254,6 @@ public class AdminInter extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jStudentListTableMouseClicked(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jStudentListTableMouseReleased(evt);
-            }
         });
         jScrollPane1.setViewportView(jStudentListTable);
 
@@ -266,13 +265,15 @@ public class AdminInter extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 1010, 350));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1010, 340));
 
         jPanel4.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
+        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
 
         jLabel2.setText("First Name");
 
@@ -298,11 +299,10 @@ public class AdminInter extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Delete");
-
-        jTxtStudAddress.addActionListener(new java.awt.event.ActionListener() {
+        studDeleteButton.setText("Delete");
+        studDeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtStudAddressActionPerformed(evt);
+                studDeleteButtonActionPerformed(evt);
             }
         });
 
@@ -329,16 +329,17 @@ public class AdminInter extends javax.swing.JFrame {
                                 .addComponent(jTxtStudAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(111, 111, 111)
                                 .addComponent(jLabel5))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(addNewStudInfo)
-                                .addGap(51, 51, 51)
-                                .addComponent(updateStudInfo)
-                                .addGap(68, 68, 68)
-                                .addComponent(jButton7))
-                            .addComponent(jTxtStudLastName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGap(370, 370, 370)
+                            .addComponent(addNewStudInfo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(updateStudInfo)
+                            .addGap(18, 18, 18)
+                            .addComponent(studDeleteButton))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addGap(259, 259, 259)
+                            .addComponent(jTxtStudLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtStudNum, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
@@ -366,20 +367,20 @@ public class AdminInter extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addNewStudInfo)
                     .addComponent(updateStudInfo)
-                    .addComponent(jButton7))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addComponent(studDeleteButton))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 1010, 160));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 1010, 180));
 
-        jTabbedPane1.addTab("Student List", jPanel1);
+        TabbedPane.addTab("Student List", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setForeground(new java.awt.Color(204, 204, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
 
         jLabel9.setText("Subject 1");
 
@@ -426,11 +427,6 @@ public class AdminInter extends javax.swing.JFrame {
 
         jTxtSub5Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxtSub5Pre.setText("0");
-        jTxtSub5Pre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtSub5PreActionPerformed(evt);
-            }
-        });
 
         jTxtSub6Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxtSub6Pre.setText("0");
@@ -442,7 +438,12 @@ public class AdminInter extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setText("Delete");
+        gradeDeleteButton.setText("Delete");
+        gradeDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gradeDeleteButtonActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Student Number");
 
@@ -451,9 +452,9 @@ public class AdminInter extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -465,94 +466,104 @@ public class AdminInter extends javax.swing.JFrame {
                                     .addComponent(selectSub3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                                 .addComponent(selectSub1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31))
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtStudGradeNum, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jTxtSub3Pre, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                     .addComponent(jTxtSub2Pre)
                     .addComponent(jTxtSub1Pre))
-                .addGap(37, 37, 37)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectSub6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectSub5, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectSub4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTxtSub6Pre, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(jTxtSub4Pre)
-                    .addComponent(jTxtSub5Pre))
-                .addGap(110, 110, 110))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(addNewStudGrade)
-                .addGap(98, 98, 98)
-                .addComponent(updateStudGrade)
-                .addGap(75, 75, 75)
-                .addComponent(jButton9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectSub6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectSub5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectSub4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTxtSub5Pre, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtSub4Pre, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtSub6Pre, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(addNewStudGrade)
+                        .addGap(61, 61, 61)
+                        .addComponent(updateStudGrade)
+                        .addGap(52, 52, 52)
+                        .addComponent(gradeDeleteButton)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(jTxtStudGradeNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jTxtStudGradeNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(selectSub4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtSub4Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
                             .addComponent(selectSub3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtSub3Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTxtSub3Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(selectSub1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtSub1Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel17)
-                            .addComponent(jTxtSub4Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(selectSub4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTxtSub1Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(selectSub2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtSub2Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTxtSub5Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selectSub5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(selectSub6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtSub6Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(selectSub2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtSub2Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(selectSub5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtSub5Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(selectSub6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtSub6Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel19))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addNewStudGrade)
-                    .addComponent(updateStudGrade)
-                    .addComponent(jButton9))
-                .addContainerGap(44, Short.MAX_VALUE))
+                            .addComponent(addNewStudGrade)
+                            .addComponent(updateStudGrade)
+                            .addComponent(gradeDeleteButton))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 1030, 230));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 1010, 180));
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
 
+        jStudGradeTable.setBackground(new java.awt.Color(204, 255, 255));
         jStudGradeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -575,25 +586,24 @@ public class AdminInter extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1002, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 1030, 300));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1010, 340));
 
-        jTabbedPane1.addTab("Grade", jPanel2);
+        TabbedPane.addTab("Grade", jPanel2);
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTeacherListTable.setBackground(new java.awt.Color(153, 255, 255));
         jTeacherListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -612,28 +622,28 @@ public class AdminInter extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTeacherListTable);
 
-        jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 330));
+        jPanel8.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 990, 320));
 
-        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 1050, 350));
+        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1010, 340));
 
         jPanel9.setBackground(new java.awt.Color(204, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 4, true));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setText("First Name");
-        jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+        jPanel9.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, -1, -1));
 
         jLabel13.setText("Teacher Number");
-        jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jPanel9.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         jLabel14.setText("Subject");
-        jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel9.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel15.setText("Last Name");
-        jPanel9.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 40, -1, -1));
+        jPanel9.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, -1, -1));
 
         jLabel16.setText("Password");
-        jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, -1));
+        jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, -1, -1));
 
         addNewTeach.setText("Add");
         addNewTeach.addActionListener(new java.awt.event.ActionListener() {
@@ -641,7 +651,7 @@ public class AdminInter extends javax.swing.JFrame {
                 addNewTeachActionPerformed(evt);
             }
         });
-        jPanel9.add(addNewTeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, -1, -1));
+        jPanel9.add(addNewTeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, -1, -1));
 
         UpdateTeach.setText("Update");
         UpdateTeach.addActionListener(new java.awt.event.ActionListener() {
@@ -649,27 +659,38 @@ public class AdminInter extends javax.swing.JFrame {
                 UpdateTeachActionPerformed(evt);
             }
         });
-        jPanel9.add(UpdateTeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
+        jPanel9.add(UpdateTeach, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, -1, -1));
 
-        jButton4.setText("Delete");
-        jPanel9.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, -1, -1));
+        teachDeleteButt.setText("Delete");
+        teachDeleteButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teachDeleteButtActionPerformed(evt);
+            }
+        });
+        jPanel9.add(teachDeleteButt, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, -1, -1));
 
         jLabel7.setText("Email");
-        jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, -1, -1));
-        jPanel9.add(jTxtTeachNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 140, -1));
-        jPanel9.add(jTxtTeachFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 240, -1));
-        jPanel9.add(jTxtTeachLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, 250, -1));
-        jPanel9.add(jTxtTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 240, -1));
-        jPanel9.add(jTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 250, -1));
+        jPanel9.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        jPanel9.add(jTxtTeachNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 140, -1));
+        jPanel9.add(jTxtTeachFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 240, -1));
+        jPanel9.add(jTxtTeachLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 250, -1));
+
+        jTxtTeachEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTeachEmailActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jTxtTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 240, -1));
+        jPanel9.add(jTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, 250, -1));
 
         jComboTeachSub.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Maths", "Irish", "English", "Physics", "Chemistry", "Biology ", "French ", "German" }));
-        jPanel9.add(jComboTeachSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 170, -1));
+        jPanel9.add(jComboTeachSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 170, -1));
 
-        jPanel7.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 1050, 170));
+        jPanel7.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 1010, 180));
 
-        jTabbedPane1.addTab("Teacher List", jPanel7);
+        TabbedPane.addTab("Teacher List", jPanel7);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1100, 620));
+        getContentPane().add(TabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1100, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -703,10 +724,6 @@ public class AdminInter extends javax.swing.JFrame {
                     (java.util.logging.Level.SEVERE,null, ex);
         }
     }//GEN-LAST:event_addNewStudInfoActionPerformed
-
-    private void jTxtSub5PreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSub5PreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtSub5PreActionPerformed
 // Adds a student grade into the table
     private void addNewStudGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewStudGradeActionPerformed
         // TODO add your handling code here:
@@ -814,10 +831,6 @@ public class AdminInter extends javax.swing.JFrame {
        jTxtStudConNum.setText(RecordTable.getValueAt(SelectedRows,4).toString());
     }//GEN-LAST:event_jStudentListTableMouseClicked
 
-    private void jTxtStudAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtStudAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtStudAddressActionPerformed
-
     private void jStudGradeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStudGradeTableMouseClicked
        DefaultTableModel RecordTable = (DefaultTableModel)jStudGradeTable.getModel();
        int SelectedRows = jStudGradeTable.getSelectedRow();
@@ -915,9 +928,81 @@ public class AdminInter extends javax.swing.JFrame {
        jTeachPassword.setText(RecordTable.getValueAt(SelectedRows,5).toString());
     }//GEN-LAST:event_jTeacherListTableMouseClicked
 
-    private void jStudentListTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStudentListTableMouseReleased
+    private void jTxtTeachEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTeachEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTeachEmailActionPerformed
 
-    }//GEN-LAST:event_jStudentListTableMouseReleased
+    private void studDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studDeleteButtonActionPerformed
+        DefaultTableModel RecordTable = (DefaultTableModel)jStudentListTable.getModel();
+        int SelectedRows = jStudentListTable.getSelectedRow();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+                sqlCon=DriverManager.getConnection(dataCon,username,password);
+                    preState = sqlCon.prepareStatement("DELETE from Student WHERE studentId = ?");
+                    preState.setString (1,jTxtStudNum.getText());
+                    preState.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Student is deleted");
+                    uploadDBStudentInfo();                       
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+    }//GEN-LAST:event_studDeleteButtonActionPerformed
+
+    private void gradeDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeDeleteButtonActionPerformed
+        DefaultTableModel RecordTable = (DefaultTableModel)jStudGradeTable.getModel();
+        int SelectedRows = jStudGradeTable.getSelectedRow();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+                sqlCon=DriverManager.getConnection(dataCon,username,password);
+                    preState = sqlCon.prepareStatement("DELETE from StudentGrade WHERE studentId = ?");
+                    preState.setString (1,jTxtStudGradeNum.getText());
+                    preState.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Student Grade is deleted");
+                    uploadDBStudentGrade();                       
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+    }//GEN-LAST:event_gradeDeleteButtonActionPerformed
+
+    private void teachDeleteButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teachDeleteButtActionPerformed
+        DefaultTableModel RecordTable = (DefaultTableModel)jTeacherListTable.getModel();
+        int SelectedRows = jTeacherListTable.getSelectedRow();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+                sqlCon=DriverManager.getConnection(dataCon,username,password);
+                    preState = sqlCon.prepareStatement("DELETE from Teacher WHERE teacherId = ?");
+                    preState.setString (1,jTxtTeachNum.getText());
+                    preState.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Teacher Info is deleted");
+                    uploadDBTeacherInfo();                       
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+    }//GEN-LAST:event_teachDeleteButtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -955,13 +1040,12 @@ public class AdminInter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane TabbedPane;
     private javax.swing.JButton UpdateTeach;
     private javax.swing.JButton addNewStudGrade;
     private javax.swing.JButton addNewStudInfo;
     private javax.swing.JButton addNewTeach;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton gradeDeleteButton;
     private javax.swing.JComboBox<String> jComboTeachSub;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -996,7 +1080,6 @@ public class AdminInter extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jStudGradeTable;
     private javax.swing.JTable jStudentListTable;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTeachPassword;
     private javax.swing.JTable jTeacherListTable;
     private javax.swing.JTextField jTxtStudAddress;
@@ -1021,6 +1104,8 @@ public class AdminInter extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectSub4;
     private javax.swing.JComboBox<String> selectSub5;
     private javax.swing.JComboBox<String> selectSub6;
+    private javax.swing.JButton studDeleteButton;
+    private javax.swing.JButton teachDeleteButt;
     private javax.swing.JButton updateStudGrade;
     private javax.swing.JButton updateStudInfo;
     // End of variables declaration//GEN-END:variables

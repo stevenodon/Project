@@ -41,14 +41,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        labTeachEmail = new javax.swing.JLabel();
-        labTeachPassword = new javax.swing.JLabel();
-        textTeachPassword = new javax.swing.JPasswordField();
-        textTeachEmail = new javax.swing.JTextField();
-        buttTeachLogin = new javax.swing.JButton();
-        buttTeachReset = new javax.swing.JButton();
-        buttTeachExit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         textAdminPassword = new javax.swing.JPasswordField();
         textAdminEmail = new javax.swing.JTextField();
@@ -57,77 +49,38 @@ public class Login extends javax.swing.JFrame {
         buttAdminLogin = new javax.swing.JButton();
         buttAdminReset = new javax.swing.JButton();
         buttAdminExit = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        labTeachEmail = new javax.swing.JLabel();
+        labTeachPassword = new javax.swing.JLabel();
+        textTeachPassword = new javax.swing.JPasswordField();
+        textTeachEmail = new javax.swing.JTextField();
+        buttTeachLogin = new javax.swing.JButton();
+        buttTeachReset = new javax.swing.JButton();
+        buttTeachExit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 8, true));
-
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        labTeachEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        labTeachEmail.setText("Email");
-        jPanel1.add(labTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
-
-        labTeachPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        labTeachPassword.setText("Password");
-        jPanel1.add(labTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
-
-        textTeachPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        textTeachPassword.setToolTipText("");
-        jPanel1.add(textTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 220, -1));
-
-        textTeachEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jPanel1.add(textTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 220, -1));
-
-        buttTeachLogin.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        buttTeachLogin.setText("Login");
-        buttTeachLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttTeachLoginActionPerformed(evt);
-            }
-        });
-        jPanel1.add(buttTeachLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
-
-        buttTeachReset.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        buttTeachReset.setText("Reset");
-        buttTeachReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttTeachResetActionPerformed(evt);
-            }
-        });
-        jPanel1.add(buttTeachReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
-
-        buttTeachExit.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        buttTeachExit.setText("Exit");
-        buttTeachExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttTeachExitActionPerformed(evt);
-            }
-        });
-        jPanel1.add(buttTeachExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, -1, -1));
-
-        jTabbedPane1.addTab("Teacher", jPanel1);
+        jTabbedPane1.setBackground(new java.awt.Color(102, 102, 255));
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         textAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jPanel2.add(textAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 220, -1));
+        jPanel2.add(textAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
 
         textAdminEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jPanel2.add(textAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 220, -1));
+        jPanel2.add(textAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 220, -1));
 
         labAdminEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labAdminEmail.setText("Email");
-        jPanel2.add(labAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
+        jPanel2.add(labAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         labAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         labAdminPassword.setText("Password");
-        jPanel2.add(labAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
+        jPanel2.add(labAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         buttAdminLogin.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         buttAdminLogin.setText("Login");
@@ -136,7 +89,7 @@ public class Login extends javax.swing.JFrame {
                 buttAdminLoginActionPerformed(evt);
             }
         });
-        jPanel2.add(buttAdminLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+        jPanel2.add(buttAdminLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         buttAdminReset.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         buttAdminReset.setText("Reset");
@@ -145,7 +98,7 @@ public class Login extends javax.swing.JFrame {
                 buttAdminResetActionPerformed(evt);
             }
         });
-        jPanel2.add(buttAdminReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, -1, -1));
+        jPanel2.add(buttAdminReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
 
         buttAdminExit.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         buttAdminExit.setText("Exit");
@@ -154,15 +107,62 @@ public class Login extends javax.swing.JFrame {
                 buttAdminExitActionPerformed(evt);
             }
         });
-        jPanel2.add(buttAdminExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
+        jPanel2.add(buttAdminExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
 
         jTabbedPane1.addTab("Administration", jPanel2);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 780, 500));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labTeachEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labTeachEmail.setText("Email");
+        jPanel1.add(labTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        labTeachPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labTeachPassword.setText("Password");
+        jPanel1.add(labTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        textTeachPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        textTeachPassword.setToolTipText("");
+        jPanel1.add(textTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
+
+        textTeachEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jPanel1.add(textTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 220, -1));
+
+        buttTeachLogin.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        buttTeachLogin.setText("Login");
+        buttTeachLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttTeachLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttTeachLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        buttTeachReset.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        buttTeachReset.setText("Reset");
+        buttTeachReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttTeachResetActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttTeachReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+
+        buttTeachExit.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        buttTeachExit.setText("Exit");
+        buttTeachExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttTeachExitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttTeachExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
+
+        jTabbedPane1.addTab("Teacher", jPanel1);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 410, 250));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel2.setText("Terminal Exam Entry Point");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
