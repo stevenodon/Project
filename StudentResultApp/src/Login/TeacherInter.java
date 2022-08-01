@@ -69,6 +69,47 @@ public class TeacherInter extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, ex);
         }            
     }
+    
+    public void inputDBStudentGrade () {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        sqlConn = DriverManager.getConnection(dataCon,username,password);
+        preStatement = sqlConn.prepareStatement("SELECT * FROM ResultsSystem.StudentGrade");
+        resultSet = preStatement.executeQuery();
+        ResultSetMetaData stData = resultSet.getMetaData();
+        
+        q = stData.getColumnCount();
+        DefaultTableModel RecordTable = (DefaultTableModel)studGradeTable2.getModel();
+        RecordTable.setRowCount (0);
+        
+        while (resultSet.next())
+        {
+            Vector columnData = new Vector();
+            
+            for (i = 1; i <= q; i++){
+                columnData.add(resultSet.getString("studentId"));
+                columnData.add(resultSet.getString("subjectOne"));
+                columnData.add(resultSet.getInt("precentOne"));
+                columnData.add(resultSet.getString("subjectTwo"));
+                columnData.add(resultSet.getInt("precentTwo"));
+                columnData.add(resultSet.getString("subjectThree"));
+                columnData.add(resultSet.getInt("precentThree"));
+                columnData.add(resultSet.getString("subjectFour"));
+                columnData.add(resultSet.getInt("precentFour"));
+                columnData.add(resultSet.getString("subjectFive"));
+                columnData.add(resultSet.getInt("precentFive"));
+                columnData.add(resultSet.getString("subjectSix"));
+                columnData.add(resultSet.getInt("precentSix"));
+            }
+        RecordTable.addRow(columnData);
+        }
+        
+    }
+    catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,23 +146,23 @@ public class TeacherInter extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
+        selectSub1 = new javax.swing.JTextField();
+        selectSub3 = new javax.swing.JTextField();
+        selectSub4 = new javax.swing.JTextField();
+        selectSub5 = new javax.swing.JTextField();
+        selectSub6 = new javax.swing.JTextField();
+        selectSub2 = new javax.swing.JTextField();
+        jTxtSub2Pre = new javax.swing.JTextField();
+        jTxtSub3Pre = new javax.swing.JTextField();
+        jTxtSub1Pre = new javax.swing.JTextField();
+        jTxtSub5Pre = new javax.swing.JTextField();
+        jTxtSub6Pre = new javax.swing.JTextField();
+        jTxtSub4Pre = new javax.swing.JTextField();
         updateGrade = new javax.swing.JButton();
-        jTextField18 = new javax.swing.JTextField();
+        jTxtStudGradeNum = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        studGradeTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -150,6 +191,11 @@ public class TeacherInter extends javax.swing.JFrame {
                 "First Name", "Last Name", "Student Number", "Address", "Contact Number"
             }
         ));
+        studentListTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studentListTable2MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(studentListTable2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -254,30 +300,35 @@ public class TeacherInter extends javax.swing.JFrame {
 
         jLabel13.setText("Subject 6");
 
-        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField12.setText("0");
+        jTxtSub2Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtSub2Pre.setText("0");
 
-        jTextField13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField13.setText("0");
-        jTextField13.addActionListener(new java.awt.event.ActionListener() {
+        jTxtSub3Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtSub3Pre.setText("0");
+        jTxtSub3Pre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField13ActionPerformed(evt);
+                jTxtSub3PreActionPerformed(evt);
             }
         });
 
-        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField14.setText("0");
+        jTxtSub1Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtSub1Pre.setText("0");
 
-        jTextField15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField15.setText("0");
+        jTxtSub5Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtSub5Pre.setText("0");
 
-        jTextField16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField16.setText("0");
+        jTxtSub6Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtSub6Pre.setText("0");
 
-        jTextField17.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField17.setText("0");
+        jTxtSub4Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTxtSub4Pre.setText("0");
 
         updateGrade.setText("Add Grade");
+        updateGrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateGradeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -296,16 +347,16 @@ public class TeacherInter extends javax.swing.JFrame {
                                     .addComponent(jLabel10))
                                 .addGap(47, 47, 47)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField18, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                    .addComponent(jTextField7)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jTxtStudGradeNum, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                    .addComponent(selectSub3)
+                                    .addComponent(selectSub2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(selectSub1, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField12)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(jTextField14, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(jTxtSub2Pre)
+                            .addComponent(jTxtSub3Pre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(jTxtSub1Pre, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
@@ -324,19 +375,19 @@ public class TeacherInter extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(selectSub4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(selectSub6, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTxtSub6Pre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtSub5Pre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTxtSub4Pre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(38, 38, 38))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(selectSub5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -350,30 +401,30 @@ public class TeacherInter extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtSub4Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtStudGradeNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectSub4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectSub1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectSub5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtSub1Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtSub5Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectSub6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectSub2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtSub2Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtSub6Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectSub3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtSub3Pre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateGrade))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -382,8 +433,8 @@ public class TeacherInter extends javax.swing.JFrame {
 
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 255, 255), 4, true));
 
-        jTable2.setBackground(new java.awt.Color(204, 204, 255));
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        studGradeTable2.setBackground(new java.awt.Color(204, 204, 255));
+        studGradeTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -394,7 +445,12 @@ public class TeacherInter extends javax.swing.JFrame {
                 "Sudent Number", "Subject 1", "% 1", "Subject 2", "% 2", "Subject 3", "% 3", "Subject 4", "% 4", "Subject 5", "% 5", "Subject 6", "% 6"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        studGradeTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                studGradeTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(studGradeTable2);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -419,9 +475,68 @@ public class TeacherInter extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+    private void jTxtSub3PreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSub3PreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField13ActionPerformed
+    }//GEN-LAST:event_jTxtSub3PreActionPerformed
+
+    private void studentListTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListTable2MouseClicked
+       DefaultTableModel RecordTable = (DefaultTableModel)studentListTable2.getModel();
+       int SelectedRows = studentListTable2.getSelectedRow();
+       
+       jTxtStudFirstName.setText(RecordTable.getValueAt(SelectedRows,0).toString());
+       jTxtStudLastName.setText(RecordTable.getValueAt(SelectedRows,1).toString());
+       jTxtStudNum.setText(RecordTable.getValueAt(SelectedRows,2).toString());
+       jTxtStudAddress.setText(RecordTable.getValueAt(SelectedRows,3).toString());
+       jTxtStudConNum.setText(RecordTable.getValueAt(SelectedRows,4).toString());
+    }//GEN-LAST:event_studentListTable2MouseClicked
+
+    private void studGradeTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studGradeTable2MouseClicked
+        DefaultTableModel RecordTable = (DefaultTableModel)studGradeTable2.getModel();
+       int SelectedRows = studGradeTable2.getSelectedRow();
+       
+       jTxtStudGradeNum.setText(RecordTable.getValueAt(SelectedRows,0).toString());
+       selectSub1.setText(RecordTable.getValueAt(SelectedRows,1).toString());
+       jTxtSub1Pre.setText(RecordTable.getValueAt(SelectedRows,2).toString());
+       selectSub2.setText(RecordTable.getValueAt(SelectedRows,3).toString());
+       jTxtSub2Pre.setText(RecordTable.getValueAt(SelectedRows,4).toString());
+       selectSub3.setText(RecordTable.getValueAt(SelectedRows,5).toString());
+       jTxtSub3Pre.setText(RecordTable.getValueAt(SelectedRows,6).toString());
+       selectSub4.setText(RecordTable.getValueAt(SelectedRows,7).toString());
+       jTxtSub4Pre.setText(RecordTable.getValueAt(SelectedRows,8).toString());
+       selectSub5.setText(RecordTable.getValueAt(SelectedRows,9).toString());
+       jTxtSub5Pre.setText(RecordTable.getValueAt(SelectedRows,10).toString());
+       selectSub6.setText(RecordTable.getValueAt(SelectedRows,11).toString());
+       jTxtSub6Pre.setText(RecordTable.getValueAt(SelectedRows,12).toString());
+    }//GEN-LAST:event_studGradeTable2MouseClicked
+
+    private void updateGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGradeActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataCon,username,password);
+            preStatement = sqlConn.prepareStatement("UPDATE ResultsSystem.StudentGrade SET precentOne = ?, precentTwo = ?, precentThree = ?, precentFour = ?, precentFive = ?, precentSix = ? WHERE studentId = ?");           
+            preStatement.setString (1, jTxtSub1Pre.getText());           
+            preStatement.setString (2, jTxtSub2Pre.getText());            
+            preStatement.setString (3, jTxtSub3Pre.getText());            
+            preStatement.setString (4, jTxtSub4Pre.getText());
+            preStatement.setString (5, jTxtSub5Pre.getText());            
+            preStatement.setString (6, jTxtSub6Pre.getText());
+            preStatement.setString (7, jTxtStudGradeNum.getText());
+            
+            preStatement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Student Grade updated info updated");
+            inputDBStudentGrade();
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+    }//GEN-LAST:event_updateGradeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,25 +596,25 @@ public class TeacherInter extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTxtStudAddress;
     private javax.swing.JTextField jTxtStudConNum;
     private javax.swing.JTextField jTxtStudFirstName;
+    private javax.swing.JTextField jTxtStudGradeNum;
     private javax.swing.JTextField jTxtStudLastName;
     private javax.swing.JTextField jTxtStudNum;
+    private javax.swing.JTextField jTxtSub1Pre;
+    private javax.swing.JTextField jTxtSub2Pre;
+    private javax.swing.JTextField jTxtSub3Pre;
+    private javax.swing.JTextField jTxtSub4Pre;
+    private javax.swing.JTextField jTxtSub5Pre;
+    private javax.swing.JTextField jTxtSub6Pre;
+    private javax.swing.JTextField selectSub1;
+    private javax.swing.JTextField selectSub2;
+    private javax.swing.JTextField selectSub3;
+    private javax.swing.JTextField selectSub4;
+    private javax.swing.JTextField selectSub5;
+    private javax.swing.JTextField selectSub6;
+    private javax.swing.JTable studGradeTable2;
     private javax.swing.JTable studentListTable2;
     private javax.swing.JButton updateGrade;
     // End of variables declaration//GEN-END:variables

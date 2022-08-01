@@ -163,6 +163,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="studentListTable2MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -342,19 +345,19 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTextField18" pref="166" max="32767" attributes="0"/>
-                                              <Component id="jTextField7" max="32767" attributes="0"/>
-                                              <Component id="jTextField11" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="jTextField6" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="jTxtStudGradeNum" pref="166" max="32767" attributes="0"/>
+                                              <Component id="selectSub3" max="32767" attributes="0"/>
+                                              <Component id="selectSub2" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="selectSub1" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="60" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jTextField12" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jTextField13" alignment="0" pref="93" max="32767" attributes="0"/>
-                                      <Component id="jTextField14" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTxtSub2Pre" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jTxtSub3Pre" alignment="0" pref="93" max="32767" attributes="0"/>
+                                      <Component id="jTxtSub1Pre" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -381,24 +384,24 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="jTextField8" min="-2" pref="194" max="-2" attributes="0"/>
+                                                  <Component id="selectSub4" min="-2" pref="194" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Component id="jTextField10" min="-2" pref="194" max="-2" attributes="0"/>
+                                                  <Component id="selectSub6" min="-2" pref="194" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField16" min="-2" pref="94" max="-2" attributes="0"/>
-                                              <Component id="jTextField15" min="-2" pref="94" max="-2" attributes="0"/>
-                                              <Component id="jTextField17" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="jTxtSub6Pre" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="jTxtSub5Pre" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="jTxtSub4Pre" min="-2" pref="94" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jTextField9" min="-2" pref="194" max="-2" attributes="0"/>
+                                          <Component id="selectSub5" min="-2" pref="194" max="-2" attributes="0"/>
                                           <EmptySpace min="15" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -419,33 +422,33 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField17" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField18" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtSub4Pre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtStudGradeNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectSub4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField15" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectSub1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectSub5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtSub1Pre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtSub5Pre" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectSub6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectSub2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtSub2Pre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtSub6Pre" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="selectSub3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTxtSub3Pre" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="updateGrade" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="17" max="32767" attributes="0"/>
@@ -489,52 +492,52 @@
                     <Property name="text" type="java.lang.String" value="Subject 6"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField6">
+                <Component class="javax.swing.JTextField" name="selectSub1">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField7">
+                <Component class="javax.swing.JTextField" name="selectSub3">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField8">
+                <Component class="javax.swing.JTextField" name="selectSub4">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField9">
+                <Component class="javax.swing.JTextField" name="selectSub5">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField10">
+                <Component class="javax.swing.JTextField" name="selectSub6">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField11">
+                <Component class="javax.swing.JTextField" name="selectSub2">
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField12">
+                <Component class="javax.swing.JTextField" name="jTxtSub2Pre">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField13">
+                <Component class="javax.swing.JTextField" name="jTxtSub3Pre">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField13ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTxtSub3PreActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField14">
+                <Component class="javax.swing.JTextField" name="jTxtSub1Pre">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField15">
+                <Component class="javax.swing.JTextField" name="jTxtSub5Pre">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField16">
+                <Component class="javax.swing.JTextField" name="jTxtSub6Pre">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField17">
+                <Component class="javax.swing.JTextField" name="jTxtSub4Pre">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="0"/>
@@ -544,8 +547,11 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Grade"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateGradeActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField18">
+                <Component class="javax.swing.JTextField" name="jTxtStudGradeNum">
                 </Component>
               </SubComponents>
             </Container>
@@ -588,7 +594,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable2">
+                    <Component class="javax.swing.JTable" name="studGradeTable2">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
@@ -683,6 +689,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="studGradeTable2MouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
