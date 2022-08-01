@@ -3,9 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Login;
-import javax.swing.JOptionPane;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+
 import Login.TeacherInter;
 import Login.AdminInter;
 import java.sql.Connection;
@@ -13,6 +11,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import javax.swing.JOptionPane;
+
+import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.TableColumn;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -21,7 +28,7 @@ import java.sql.ResultSetMetaData;
 public class Login extends javax.swing.JFrame {
     String username = "root";
     String password = "Pa55w0rd!";
-    String dataCon = "jdbc.mysql://localhost:3306/ResultsSystem";
+    String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
     
     Connection sqlCon = null;
     PreparedStatement preState = null;
@@ -192,53 +199,86 @@ public class Login extends javax.swing.JFrame {
 
     //Teacher Login Button Function
     private void buttTeachLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttTeachLoginActionPerformed
-       String teachPassword = textTeachPassword.getText();
-       String teachEmail = textTeachEmail.getText();
+       //String teachPassword = textTeachPassword.getText();
+       //String teachEmail = textTeachEmail.getText();
        
-       if (teachPassword.contains("one") && (teachEmail.contains("king")))
-       {
-           textTeachPassword.setText(null);
-           textTeachEmail.setText(null);
-           systemExit();
-           
-           TeacherInter interfaceTeach = new TeacherInter();
-           interfaceTeach.setVisible(true);
-           interfaceTeach.inputDBStudInfo();
-           interfaceTeach.inputDBStudentGrade();
+       try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            sqlCon = DriverManager.getConnection(dataCon,username,password);
+            preState = sqlCon.prepareStatement("SELECT * FROM ResultsSystem.Teacher WHERE email = ? AND password = ?");
+            preState.setString(1, textTeachEmail.getText());
+            preState.setString(2, textTeachPassword.getText());
+            resultSet = preState.executeQuery();
+            
+            if (resultSet.next())
+                {
+                    textTeachPassword.setText(null);
+                    textTeachEmail.setText(null);
+                    systemExit();
+
+                    TeacherInter interfaceTeach = new TeacherInter();
+                    interfaceTeach.setVisible(true);
+                    interfaceTeach.inputDBStudInfo();
+                    interfaceTeach.inputDBStudentGrade();
            
           //Need to create the teacher page and then add the login in material. 
-       }
-       else 
-       {
-       JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
-       textTeachPassword.setText(null);
-       textTeachEmail.setText(null);
-       }
+                }
+            else 
+                {
+                JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
+                textTeachPassword.setText(null);
+                textTeachEmail.setText(null);
+                }
+            
+            }
+       catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+       
     }//GEN-LAST:event_buttTeachLoginActionPerformed
 
     //Admin Login Button Function
     private void buttAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttAdminLoginActionPerformed
-        String adminPassword = textAdminPassword.getText();
-        String adminEmail = textAdminEmail.getText();
+        //String adminPassword = textAdminPassword.getText();
+        //String adminEmail = textAdminEmail.getText();
         
-        if (adminPassword.contains("two") && (adminEmail.contains("queen")))
-        {
-        textAdminPassword.setText(null);
-        textAdminEmail.setText(null);
-        systemExit();
         
-        AdminInter interfaceAdmin = new AdminInter();
-        interfaceAdmin.setVisible(true);
-        interfaceAdmin.uploadDBStudentGrade();
-        interfaceAdmin.uploadDBStudentInfo();
-        interfaceAdmin.uploadDBTeacherInfo();
-        }
-        else
+         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            sqlCon = DriverManager.getConnection(dataCon,username,password);
+            preState = sqlCon.prepareStatement("SELECT * FROM ResultsSystem.Administrator WHERE adminEmail = ? AND password = ?");
+            preState.setString(1, textAdminEmail.getText());
+            preState.setString(2, textAdminPassword.getText());
+            resultSet = preState.executeQuery();
+            
+            if (resultSet.next())
+                {
+                    textAdminPassword.setText(null);
+                    textAdminEmail.setText(null);
+                    systemExit();
+
+                   AdminInter interfaceAdmin = new AdminInter();
+                    interfaceAdmin.setVisible(true);
+                    interfaceAdmin.uploadDBStudentGrade();
+                    interfaceAdmin.uploadDBStudentInfo();
+                    interfaceAdmin.uploadDBTeacherInfo();
+           
+          //Need to create the teacher page and then add the login in material. 
+                }
+            else 
+                {
+                JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
+                textTeachPassword.setText(null);
+                textTeachEmail.setText(null);
+                }
+            
+            }
+       catch(Exception ex)
         {
-        JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
-        textAdminPassword.setText(null);
-        textAdminEmail.setText(null);
+            JOptionPane.showMessageDialog(null, ex);
         }
+       
     }//GEN-LAST:event_buttAdminLoginActionPerformed
 
     //Interface Variables & Settings
