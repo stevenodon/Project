@@ -203,6 +203,7 @@ public class Login extends javax.swing.JFrame {
            
            TeacherInter interfaceTeach = new TeacherInter();
            interfaceTeach.setVisible(true);
+           interfaceTeach.inputDBStudInfo();
            
           //Need to create the teacher page and then add the login in material. 
        }
