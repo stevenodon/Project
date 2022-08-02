@@ -6,6 +6,7 @@ package Login;
 
 import Login.TeacherInter;
 import Login.AdminInter;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,14 +49,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        textAdminPassword = new javax.swing.JPasswordField();
-        textAdminEmail = new javax.swing.JTextField();
-        labAdminEmail = new javax.swing.JLabel();
-        labAdminPassword = new javax.swing.JLabel();
-        buttAdminLogin = new javax.swing.JButton();
-        buttAdminReset = new javax.swing.JButton();
-        buttAdminExit = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         labTeachEmail = new javax.swing.JLabel();
         labTeachPassword = new javax.swing.JLabel();
@@ -64,59 +57,22 @@ public class Login extends javax.swing.JFrame {
         buttTeachLogin = new javax.swing.JButton();
         buttTeachReset = new javax.swing.JButton();
         buttTeachExit = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        textAdminPassword = new javax.swing.JPasswordField();
+        textAdminEmail = new javax.swing.JTextField();
+        labAdminEmail = new javax.swing.JLabel();
+        labAdminPassword = new javax.swing.JLabel();
+        buttAdminLogin = new javax.swing.JButton();
+        buttAdminReset = new javax.swing.JButton();
+        buttAdminExit = new javax.swing.JButton();
+        buttRootUser = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 102, 255));
-
-        jPanel2.setBackground(new java.awt.Color(153, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        textAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jPanel2.add(textAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
-
-        textAdminEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jPanel2.add(textAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 220, -1));
-
-        labAdminEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        labAdminEmail.setText("Email");
-        jPanel2.add(labAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        labAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        labAdminPassword.setText("Password");
-        jPanel2.add(labAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        buttAdminLogin.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        buttAdminLogin.setText("Login");
-        buttAdminLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttAdminLoginActionPerformed(evt);
-            }
-        });
-        jPanel2.add(buttAdminLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        buttAdminReset.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        buttAdminReset.setText("Reset");
-        buttAdminReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttAdminResetActionPerformed(evt);
-            }
-        });
-        jPanel2.add(buttAdminReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
-
-        buttAdminExit.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        buttAdminExit.setText("Exit");
-        buttAdminExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttAdminExitActionPerformed(evt);
-            }
-        });
-        jPanel2.add(buttAdminExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
-
-        jTabbedPane1.addTab("Administration", jPanel2);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,6 +120,60 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(buttTeachExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
 
         jTabbedPane1.addTab("Teacher", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        textAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jPanel2.add(textAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
+
+        textAdminEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jPanel2.add(textAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 220, -1));
+
+        labAdminEmail.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labAdminEmail.setText("Email");
+        jPanel2.add(labAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        labAdminPassword.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        labAdminPassword.setText("Password");
+        jPanel2.add(labAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        buttAdminLogin.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        buttAdminLogin.setText("Login");
+        buttAdminLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttAdminLoginActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttAdminLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        buttAdminReset.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        buttAdminReset.setText("Reset");
+        buttAdminReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttAdminResetActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttAdminReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+
+        buttAdminExit.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        buttAdminExit.setText("Exit");
+        buttAdminExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttAdminExitActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttAdminExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
+
+        buttRootUser.setText("Root User");
+        buttRootUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttRootUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buttRootUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
+
+        jTabbedPane1.addTab("Administration", jPanel2);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 410, 250));
 
@@ -214,12 +224,14 @@ public class Login extends javax.swing.JFrame {
                 {
                     textTeachPassword.setText(null);
                     textTeachEmail.setText(null);
-                    systemExit();
+                    
 
                     TeacherInter interfaceTeach = new TeacherInter();
                     interfaceTeach.setVisible(true);
+                    systemExitNewFrame();
                     interfaceTeach.inputDBStudInfo();
                     interfaceTeach.inputDBStudentGrade();
+                    
            
           //Need to create the teacher page and then add the login in material. 
                 }
@@ -256,10 +268,10 @@ public class Login extends javax.swing.JFrame {
                 {
                     textAdminPassword.setText(null);
                     textAdminEmail.setText(null);
-                    systemExit();
 
                    AdminInter interfaceAdmin = new AdminInter();
                     interfaceAdmin.setVisible(true);
+                    systemExitNewFrame();
                     interfaceAdmin.uploadDBStudentGrade();
                     interfaceAdmin.uploadDBStudentInfo();
                     interfaceAdmin.uploadDBTeacherInfo();
@@ -280,6 +292,18 @@ public class Login extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_buttAdminLoginActionPerformed
+
+    private void buttRootUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttRootUserActionPerformed
+        try {
+            RootLogin interfaceRootLogin = new RootLogin();
+            interfaceRootLogin.setVisible(true);
+            systemExitNewFrame();
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_buttRootUserActionPerformed
 
     //Interface Variables & Settings
     /**
@@ -321,6 +345,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton buttAdminExit;
     private javax.swing.JButton buttAdminLogin;
     private javax.swing.JButton buttAdminReset;
+    private javax.swing.JButton buttRootUser;
     private javax.swing.JButton buttTeachExit;
     private javax.swing.JButton buttTeachLogin;
     private javax.swing.JButton buttTeachReset;
@@ -338,9 +363,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField textTeachPassword;
     // End of variables declaration//GEN-END:variables
 
-    private void systemExit()
+    private void systemExitNewFrame()
     {
     WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
             
 

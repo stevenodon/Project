@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Login;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -220,8 +222,9 @@ public class AdminInter extends javax.swing.JFrame {
         jTxtTeachEmail = new javax.swing.JTextField();
         jTeachPassword = new javax.swing.JTextField();
         jComboTeachSub = new javax.swing.JComboBox<>();
+        adminLogout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 153, 255));
         setPreferredSize(new java.awt.Dimension(1118, 675));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -689,6 +692,14 @@ public class AdminInter extends javax.swing.JFrame {
 
         getContentPane().add(TabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1100, 620));
 
+        adminLogout.setText("Logout");
+        adminLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminLogoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(adminLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 10, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1001,6 +1012,13 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_teachDeleteButtActionPerformed
 
+    private void adminLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLogoutActionPerformed
+        // TODO add your handling code here:
+        Login returnLogin = new Login();
+        returnLogin.setVisible(true);
+        systemExitNewFrame();
+    }//GEN-LAST:event_adminLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1042,6 +1060,7 @@ public class AdminInter extends javax.swing.JFrame {
     private javax.swing.JButton addNewStudGrade;
     private javax.swing.JButton addNewStudInfo;
     private javax.swing.JButton addNewTeach;
+    private javax.swing.JButton adminLogout;
     private javax.swing.JButton gradeDeleteButton;
     private javax.swing.JComboBox<String> jComboTeachSub;
     private javax.swing.JLabel jLabel1;
@@ -1106,4 +1125,10 @@ public class AdminInter extends javax.swing.JFrame {
     private javax.swing.JButton updateStudGrade;
     private javax.swing.JButton updateStudInfo;
     // End of variables declaration//GEN-END:variables
+
+private void systemExitNewFrame()
+    {
+    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 }

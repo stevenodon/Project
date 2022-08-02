@@ -4,6 +4,8 @@
  */
 package Login;
 
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -163,8 +165,9 @@ public class TeacherInter extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         studGradeTable2 = new javax.swing.JTable();
+        teachLogout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -471,6 +474,14 @@ public class TeacherInter extends javax.swing.JFrame {
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1100, 630));
 
+        teachLogout.setText("Logout");
+        teachLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teachLogoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(teachLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -537,6 +548,13 @@ public class TeacherInter extends javax.swing.JFrame {
                     (java.util.logging.Level.SEVERE,null, ex);
         }
     }//GEN-LAST:event_updateGradeActionPerformed
+
+    private void teachLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teachLogoutActionPerformed
+        // TODO add your handling code here:
+        Login returnLogin = new Login();
+        returnLogin.setVisible(true);
+        systemExitNewFrame();
+    }//GEN-LAST:event_teachLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -616,6 +634,13 @@ public class TeacherInter extends javax.swing.JFrame {
     private javax.swing.JTextField selectSub6;
     private javax.swing.JTable studGradeTable2;
     private javax.swing.JTable studentListTable2;
+    private javax.swing.JButton teachLogout;
     private javax.swing.JButton updateGrade;
     // End of variables declaration//GEN-END:variables
+
+private void systemExitNewFrame()
+    {
+    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
 }
