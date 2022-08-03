@@ -18,6 +18,10 @@ import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.TableColumn;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.math.BigInteger;
+
 
 /**
  *
@@ -1131,4 +1135,27 @@ private void systemExitNewFrame()
     WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
     Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
+
+/*public static String getHash(){
+    StringBuilder pa = new StringBuilder();
+    pa.append(toString(jTeachPassword.getText()));
+    
+    String passToChange = ;
+    String generatePassword = null;
+      try {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(passToChange.getBytes());
+        byte [] bytes = md.digest();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++){
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16). substring(1));
+        }
+        generatePassword = sb.toString();
+        
+      }
+      catch (NoSuchAlgorithmException e) {
+          e.printStackTrace();
+      }
+      return generatePassword;
+    }*/
 }

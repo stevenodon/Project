@@ -368,6 +368,4 @@ public class Login extends javax.swing.JFrame {
     WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
     Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
-            
-
 }
