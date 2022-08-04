@@ -26,23 +26,30 @@ import javax.swing.table.TableColumn;
  * @author stevenodonoghue
  */
 public class RootInter extends javax.swing.JFrame {
-
+/*
+    Connections to database - Fill in on all classes. 
+*/
     private static final String username = "root";
     private static final String password = "Pa55w0rd!";
     private static final String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
 
+/*
+    Constructions for database 
+*/
     Connection sqlConn = null;
     PreparedStatement preStatement = null;
     ResultSet resultSet = null;
     
-    int q, i;
-    /**
-     * Creates new form RootInter
-     */
+/*
+    Creates new form RootInter
+*/
     public RootInter() {
         initComponents();
     }
     
+/*
+    Getting the data from the administrator table in the database
+*/
     public void inputDBAdminInfo (){
     try {
        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -51,19 +58,18 @@ public class RootInter extends javax.swing.JFrame {
        resultSet = preStatement.executeQuery();
        ResultSetMetaData stData = resultSet.getMetaData();
        
-       q= stData.getColumnCount();
+       int q= stData.getColumnCount();
        DefaultTableModel RecordTable = (DefaultTableModel)adminListTable.getModel();
        RecordTable.setRowCount (0);
        
        while (resultSet.next()){
            Vector columnData = new Vector();
            
-           for(i=1;i<=q;i++){
+           for(int i=1;i<=q;i++){
                columnData.add(resultSet.getString("adminId"));
                columnData.add(resultSet.getString("firstName"));
                columnData.add(resultSet.getString("lastName"));
                columnData.add(resultSet.getString("adminEmail"));
-               columnData.add(resultSet.getString("password"));
            }
         RecordTable.addRow(columnData);
         }
@@ -90,14 +96,14 @@ public class RootInter extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        txtAdminPassword = new javax.swing.JTextField();
+        addAdminInfo = new javax.swing.JButton();
+        updateAdminInfo = new javax.swing.JButton();
+        adminDeleteInfo = new javax.swing.JButton();
         txtAdminId = new javax.swing.JTextField();
         txtAdminEmail = new javax.swing.JTextField();
         txtAdminFirstName = new javax.swing.JTextField();
         txtAdminLastName = new javax.swing.JTextField();
+        txtAdminPassword = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         adminListTable = new javax.swing.JTable();
@@ -131,19 +137,34 @@ public class RootInter extends javax.swing.JFrame {
         jLabel6.setText("Email");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, 20));
 
-        jButton1.setText("Add");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+        addAdminInfo.setText("Add");
+        addAdminInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAdminInfoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(addAdminInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
-        jButton2.setText("Update");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
+        updateAdminInfo.setText("Update");
+        updateAdminInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateAdminInfoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(updateAdminInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, -1, -1));
 
-        jButton3.setText("Delete");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, -1));
-        jPanel1.add(txtAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 160, -1));
+        adminDeleteInfo.setText("Delete");
+        adminDeleteInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminDeleteInfoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(adminDeleteInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, -1, -1));
         jPanel1.add(txtAdminId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 160, -1));
         jPanel1.add(txtAdminEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 160, -1));
         jPanel1.add(txtAdminFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 160, -1));
         jPanel1.add(txtAdminLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 160, -1));
+        jPanel1.add(txtAdminPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 180, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 1030, 160));
 
@@ -154,15 +175,20 @@ public class RootInter extends javax.swing.JFrame {
 
         adminListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Admin Id", "First Name", "Last Name", "Email", "Password"
+                "Admin Id", "First Name", "Last Name", "Email"
             }
         ));
+        adminListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminListTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(adminListTable);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1010, 370));
@@ -180,12 +206,118 @@ public class RootInter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+/*
+    Logout button action at top right of frame 
+*/
     private void rootLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rootLogoutActionPerformed
         // TODO add your handling code here:
         Login returnLogin = new Login();
         returnLogin.setVisible(true);
         systemExitNewFrame();
     }//GEN-LAST:event_rootLogoutActionPerformed
+
+    
+/*
+    Populate textboxes when a row is clicked on in table.
+*/
+    private void adminListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminListTableMouseClicked
+       DefaultTableModel RecordTable = (DefaultTableModel)adminListTable.getModel();
+       int SelectedRows = adminListTable.getSelectedRow();
+       
+       txtAdminId.setText(RecordTable.getValueAt(SelectedRows,0).toString());
+       txtAdminFirstName.setText(RecordTable.getValueAt(SelectedRows,1).toString());
+       txtAdminLastName.setText(RecordTable.getValueAt(SelectedRows,2).toString());
+       txtAdminEmail.setText(RecordTable.getValueAt(SelectedRows,3).toString());
+    }//GEN-LAST:event_adminListTableMouseClicked
+
+/*
+    Add button function to add a new admin 
+*/
+    private void addAdminInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAdminInfoActionPerformed
+         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataCon,username,password);
+            preStatement = sqlConn.prepareStatement("INSERT INTO ResultsSystem.Administrator(adminId, firstName, lastName, adminEmail, password) VALUES (?,?,?,?,?)");
+            preStatement.setString (1,txtAdminId.getText());
+            preStatement.setString (2,txtAdminFirstName.getText());
+            preStatement.setString (3,txtAdminLastName.getText());
+            preStatement.setString (4,txtAdminEmail.getText());
+            preStatement.setString (5,txtAdminPassword.getText());
+            
+            preStatement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Admin info added");
+            inputDBAdminInfo();
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }      
+    }//GEN-LAST:event_addAdminInfoActionPerformed
+
+/*
+    Update function to change details of a admin user. 
+*/
+    private void updateAdminInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAdminInfoActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            sqlConn = DriverManager.getConnection(dataCon,username,password);
+            preStatement = sqlConn.prepareStatement("UPDATE ResultsSystem.Administrator SET adminId = ?, firstName = ?, lastName = ?, adminEmail = ?, password = ? WHERE adminId = ?");
+            preStatement.setString (1,txtAdminId.getText());
+            preStatement.setString (2,txtAdminFirstName.getText());
+            preStatement.setString (3,txtAdminLastName.getText());
+            preStatement.setString (4,txtAdminEmail.getText());
+            preStatement.setString (5,txtAdminPassword.getText());
+            preStatement.setString (6,txtAdminId.getText());
+            
+            preStatement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Admin info updated");
+            inputDBAdminInfo();
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        } 
+    }//GEN-LAST:event_updateAdminInfoActionPerformed
+
+/*
+    Delete function to remove an admins details from the system.
+*/
+    private void adminDeleteInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminDeleteInfoActionPerformed
+        DefaultTableModel RecordTable = (DefaultTableModel)adminListTable.getModel();
+        int SelectedRows = adminListTable.getSelectedRow();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            sqlConn=DriverManager.getConnection(dataCon,username,password);
+            preStatement = sqlConn.prepareStatement("DELETE from Administrator WHERE adminId = ?");
+            preStatement.setString (1,txtAdminId.getText());
+            preStatement.executeUpdate();
+            JOptionPane.showMessageDialog(this, "This admin is deleted");
+            inputDBAdminInfo();                       
+        }
+        catch (ClassNotFoundException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+        catch (SQLException ex) 
+        {
+            java.util.logging.Logger.getLogger(AdminInter.class.getName()).log
+                    (java.util.logging.Level.SEVERE,null, ex);
+        }
+    }//GEN-LAST:event_adminDeleteInfoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,10 +355,9 @@ public class RootInter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addAdminInfo;
+    private javax.swing.JButton adminDeleteInfo;
     private javax.swing.JTable adminListTable;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -241,9 +372,13 @@ public class RootInter extends javax.swing.JFrame {
     private javax.swing.JTextField txtAdminFirstName;
     private javax.swing.JTextField txtAdminId;
     private javax.swing.JTextField txtAdminLastName;
-    private javax.swing.JTextField txtAdminPassword;
+    private javax.swing.JPasswordField txtAdminPassword;
+    private javax.swing.JButton updateAdminInfo;
     // End of variables declaration//GEN-END:variables
 
+/*
+    Function to close the pervious window when a new interface is created. 
+*/    
 private void systemExitNewFrame()
     {
     WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
