@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Login;
+package Application;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -40,9 +40,6 @@ public class AdminInter extends javax.swing.JFrame {
     Connection sqlCon = null;
     PreparedStatement preState = null;
     ResultSet resultSet = null;
-    
-    int q, i;
-
 /*
     Creates new form AdminInter
 */
@@ -60,14 +57,14 @@ public class AdminInter extends javax.swing.JFrame {
        resultSet = preState.executeQuery();
        ResultSetMetaData stData = resultSet.getMetaData();
        
-       q = stData.getColumnCount();
+       int q = stData.getColumnCount();
        DefaultTableModel RecordTable = (DefaultTableModel)jStudentListTable.getModel();
        RecordTable.setRowCount (0);
        
        while (resultSet.next()){
            Vector columnData = new Vector();
            
-           for(i=1;i<=q;i++){
+           for(int i=1;i<=q;i++){
                columnData.add(resultSet.getString("firstName"));
                columnData.add(resultSet.getString("lastName"));
                columnData.add(resultSet.getString("studentId"));
@@ -95,7 +92,7 @@ public class AdminInter extends javax.swing.JFrame {
         resultSet = preState.executeQuery();
         ResultSetMetaData stData = resultSet.getMetaData();
         
-        q = stData.getColumnCount();
+        int q = stData.getColumnCount();
         DefaultTableModel RecordTable = (DefaultTableModel)jStudGradeTable.getModel();
         RecordTable.setRowCount (0);
         
@@ -103,7 +100,7 @@ public class AdminInter extends javax.swing.JFrame {
         {
             Vector columnData = new Vector();
             
-            for (i = 1; i <= q; i++){
+            for (int i = 1; i <= q; i++){
                 columnData.add(resultSet.getString("studentId"));
                 columnData.add(resultSet.getString("subjectOne"));
                 columnData.add(resultSet.getInt("precentOne"));
@@ -138,14 +135,14 @@ public class AdminInter extends javax.swing.JFrame {
        resultSet = preState.executeQuery();
        ResultSetMetaData stData = resultSet.getMetaData();
        
-       q =stData.getColumnCount();
+       int q =stData.getColumnCount();
        DefaultTableModel RecordTable = (DefaultTableModel)jTeacherListTable.getModel();
        RecordTable.setRowCount (0);
        
        while (resultSet.next()){
            Vector columnData = new Vector();
            
-           for(i=1;i<=q;i++){
+           for(int i=1;i<=q;i++){
                columnData.add(resultSet.getString("teacherId"));
                columnData.add(resultSet.getString("firstName"));
                columnData.add(resultSet.getString("lastName"));
@@ -241,7 +238,6 @@ public class AdminInter extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 153, 255));
-        setPreferredSize(new java.awt.Dimension(1118, 675));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -1055,7 +1051,7 @@ public class AdminInter extends javax.swing.JFrame {
 */     
     private void adminLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLogoutActionPerformed
         // TODO add your handling code here:
-        Login returnLogin = new Login();
+        LoginInter returnLogin = new LoginInter();
         returnLogin.setVisible(true);
         systemExitNewFrame();
     }//GEN-LAST:event_adminLogoutActionPerformed

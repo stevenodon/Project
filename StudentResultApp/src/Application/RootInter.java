@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Login;
+package Application;
 
-import Login.Login;
+import Application.LoginInter;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -113,7 +113,6 @@ public class RootInter extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1110, 670));
-        setPreferredSize(new java.awt.Dimension(1110, 670));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -216,7 +215,7 @@ public class RootInter extends javax.swing.JFrame {
 */
     private void rootLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rootLogoutActionPerformed
         // TODO add your handling code here:
-        Login returnLogin = new Login();
+        LoginInter returnLogin = new LoginInter();
         returnLogin.setVisible(true);
         systemExitNewFrame();
     }//GEN-LAST:event_rootLogoutActionPerformed

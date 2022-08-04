@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Login;
+package Application;
 
-import Login.TeacherInter;
-import Login.AdminInter;
+import Application.TeacherInter;
+import Application.AdminInter;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,7 +26,7 @@ import java.awt.event.WindowEvent;
  *
  * @author stevenodonoghue
  */
-public class Login extends javax.swing.JFrame {
+public class LoginInter extends javax.swing.JFrame {
 /*
     Connections to database - Fill in on all classes. 
 */
@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
 /*
     Creates new form Login
 */
-    public Login() {
+    public LoginInter() {
         initComponents();
     }
 //    
@@ -293,7 +293,7 @@ public class Login extends javax.swing.JFrame {
 */   
     private void buttRootUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttRootUserActionPerformed
         try {
-            RootLogin interfaceRootLogin = new RootLogin();
+            RootLoginInter interfaceRootLogin = new RootLoginInter();
             interfaceRootLogin.setVisible(true);
             systemExitNewFrame();
         }
@@ -332,20 +332,21 @@ private void systemExitNewFrame()
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginInter().setVisible(true);
             }
         });
     }
