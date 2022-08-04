@@ -25,22 +25,27 @@ import javax.swing.table.TableColumn;
  * @author stevenodonoghue
  */
 public class TeacherInter extends javax.swing.JFrame {
+/*
+    Connections to database - Fill in on all classes. 
+*/
     private static final String username = "root";
     private static final String password = "Pa55w0rd!";
     private static final String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
-
+/*
+    Constructors for database 
+*/
     Connection sqlConn = null;
     PreparedStatement preStatement = null;
     ResultSet resultSet = null;
-    
-    int q, i;
-    /**
-     * Creates new form TeacherInter
-     */
+/*
+    Creates new form TeacherInter
+*/
     public TeacherInter() {
         initComponents();
     }
-    
+/*
+    Getting data from Student table in database & add to app table
+*/    
     public void inputDBStudInfo (){
     try {
        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -49,14 +54,14 @@ public class TeacherInter extends javax.swing.JFrame {
        resultSet = preStatement.executeQuery();
        ResultSetMetaData stData = resultSet.getMetaData();
        
-       q= stData.getColumnCount();
+       int q= stData.getColumnCount();
        DefaultTableModel RecordTable = (DefaultTableModel)studentListTable2.getModel();
        RecordTable.setRowCount (0);
        
        while (resultSet.next()){
            Vector columnData = new Vector();
            
-           for(i=1;i<=q;i++){
+           for(int i=1;i<=q;i++){
                columnData.add(resultSet.getString("firstName"));
                columnData.add(resultSet.getString("lastName"));
                columnData.add(resultSet.getString("studentId"));
@@ -71,7 +76,9 @@ public class TeacherInter extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, ex);
         }            
     }
-    
+/*
+    Getting data from StudentGrade table in database & add to app table
+*/     
     public void inputDBStudentGrade () {
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -80,7 +87,7 @@ public class TeacherInter extends javax.swing.JFrame {
         resultSet = preStatement.executeQuery();
         ResultSetMetaData stData = resultSet.getMetaData();
         
-        q = stData.getColumnCount();
+        int q = stData.getColumnCount();
         DefaultTableModel RecordTable = (DefaultTableModel)studGradeTable2.getModel();
         RecordTable.setRowCount (0);
         
@@ -88,7 +95,7 @@ public class TeacherInter extends javax.swing.JFrame {
         {
             Vector columnData = new Vector();
             
-            for (i = 1; i <= q; i++){
+            for (int i = 1; i <= q; i++){
                 columnData.add(resultSet.getString("studentId"));
                 columnData.add(resultSet.getString("subjectOne"));
                 columnData.add(resultSet.getInt("precentOne"));
@@ -112,7 +119,9 @@ public class TeacherInter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+// 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -308,11 +317,6 @@ public class TeacherInter extends javax.swing.JFrame {
 
         jTxtSub3Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxtSub3Pre.setText("0");
-        jTxtSub3Pre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtSub3PreActionPerformed(evt);
-            }
-        });
 
         jTxtSub1Pre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTxtSub1Pre.setText("0");
@@ -486,10 +490,12 @@ public class TeacherInter extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtSub3PreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSub3PreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtSub3PreActionPerformed
-
+//
+//AUTHOR MATERIAL
+//
+/*
+    Populate textboxes when a row is clicked on in student list table.
+*/    
     private void studentListTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentListTable2MouseClicked
        DefaultTableModel RecordTable = (DefaultTableModel)studentListTable2.getModel();
        int SelectedRows = studentListTable2.getSelectedRow();
@@ -500,7 +506,9 @@ public class TeacherInter extends javax.swing.JFrame {
        jTxtStudAddress.setText(RecordTable.getValueAt(SelectedRows,3).toString());
        jTxtStudConNum.setText(RecordTable.getValueAt(SelectedRows,4).toString());
     }//GEN-LAST:event_studentListTable2MouseClicked
-
+/*
+    Populate textboxes when a row is clicked on in student grade table.
+*/  
     private void studGradeTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studGradeTable2MouseClicked
         DefaultTableModel RecordTable = (DefaultTableModel)studGradeTable2.getModel();
        int SelectedRows = studGradeTable2.getSelectedRow();
@@ -520,6 +528,9 @@ public class TeacherInter extends javax.swing.JFrame {
        jTxtSub6Pre.setText(RecordTable.getValueAt(SelectedRows,12).toString());
     }//GEN-LAST:event_studGradeTable2MouseClicked
 
+/*
+    Update function to change percentage of a student grade.
+*/
     private void updateGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGradeActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -548,7 +559,9 @@ public class TeacherInter extends javax.swing.JFrame {
                     (java.util.logging.Level.SEVERE,null, ex);
         }
     }//GEN-LAST:event_updateGradeActionPerformed
-
+/*
+   Function to return to login interfaces (Logout Button) 
+*/  
     private void teachLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teachLogoutActionPerformed
         // TODO add your handling code here:
         Login returnLogin = new Login();
@@ -556,6 +569,17 @@ public class TeacherInter extends javax.swing.JFrame {
         systemExitNewFrame();
     }//GEN-LAST:event_teachLogoutActionPerformed
 
+/*
+Function to close the pervious window when a new interface is created. 
+*/    
+    private void systemExitNewFrame()
+        {
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+// 
     /**
      * @param args the command line arguments
      */
@@ -637,10 +661,4 @@ public class TeacherInter extends javax.swing.JFrame {
     private javax.swing.JButton teachLogout;
     private javax.swing.JButton updateGrade;
     // End of variables declaration//GEN-END:variables
-
-private void systemExitNewFrame()
-    {
-    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
 }

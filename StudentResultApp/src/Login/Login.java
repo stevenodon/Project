@@ -27,23 +27,27 @@ import java.awt.event.WindowEvent;
  * @author stevenodonoghue
  */
 public class Login extends javax.swing.JFrame {
+/*
+    Connections to database - Fill in on all classes. 
+*/
     String username = "root";
     String password = "Pa55w0rd!";
     String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
-    
+/*
+    Constructors for database 
+*/    
     Connection sqlCon = null;
     PreparedStatement preState = null;
-    ResultSet resultSet = null;
-    
-    int q, i;
-    
-    /**
-     * Creates new form Login
-     */
+    ResultSet resultSet = null;   
+/*
+    Creates new form Login
+*/
     public Login() {
         initComponents();
     }
-    
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+//     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -185,34 +189,40 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //Exit system on Teacher Login
+//
+//AUTHOR MATERIAL
+//
+/*    
+    Exit system on Teacher Login
+*/
     private void buttTeachExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttTeachExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_buttTeachExitActionPerformed
-
-    //Exit system on Admin Login
+/*
+    Exit system on Admin Login
+*/
     private void buttAdminExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttAdminExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_buttAdminExitActionPerformed
-
-    //Reset fields on Teacher Login
+/*
+    Reset fields on Teacher Login
+*/
     private void buttTeachResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttTeachResetActionPerformed
         textTeachEmail.setText(null);
         textTeachPassword.setText(null);
     }//GEN-LAST:event_buttTeachResetActionPerformed
-
-    //Reset fields on Admin Login
+/*
+    Reset fields on Admin Login
+*/
     private void buttAdminResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttAdminResetActionPerformed
         textAdminEmail.setText(null);
         textAdminPassword.setText(null);
     }//GEN-LAST:event_buttAdminResetActionPerformed
-
-    //Teacher Login Button Function
+/*
+    Teacher Login Button Function
+*/
     private void buttTeachLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttTeachLoginActionPerformed
-       //String teachPassword = textTeachPassword.getText();
-       //String teachEmail = textTeachEmail.getText();
-       
-       try {
+         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             sqlCon = DriverManager.getConnection(dataCon,username,password);
             preState = sqlCon.prepareStatement("SELECT * FROM ResultsSystem.Teacher WHERE email = ? AND password = ?");
@@ -220,23 +230,17 @@ public class Login extends javax.swing.JFrame {
             preState.setString(2, textTeachPassword.getText());
             resultSet = preState.executeQuery();
             
-            if (resultSet.next())
-                {
+            if (resultSet.next()){
                     textTeachPassword.setText(null);
                     textTeachEmail.setText(null);
                     
-
                     TeacherInter interfaceTeach = new TeacherInter();
                     interfaceTeach.setVisible(true);
                     systemExitNewFrame();
                     interfaceTeach.inputDBStudInfo();
-                    interfaceTeach.inputDBStudentGrade();
-                    
-           
-          //Need to create the teacher page and then add the login in material. 
+                    interfaceTeach.inputDBStudentGrade(); 
                 }
-            else 
-                {
+            else {
                 JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
                 textTeachPassword.setText(null);
                 textTeachEmail.setText(null);
@@ -249,13 +253,10 @@ public class Login extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_buttTeachLoginActionPerformed
-
-    //Admin Login Button Function
+/*
+    Admin Login Button Function
+*/    
     private void buttAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttAdminLoginActionPerformed
-        //String adminPassword = textAdminPassword.getText();
-        //String adminEmail = textAdminEmail.getText();
-        
-        
          try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             sqlCon = DriverManager.getConnection(dataCon,username,password);
@@ -264,8 +265,7 @@ public class Login extends javax.swing.JFrame {
             preState.setString(2, textAdminPassword.getText());
             resultSet = preState.executeQuery();
             
-            if (resultSet.next())
-                {
+            if (resultSet.next()){
                     textAdminPassword.setText(null);
                     textAdminEmail.setText(null);
 
@@ -275,16 +275,12 @@ public class Login extends javax.swing.JFrame {
                     interfaceAdmin.uploadDBStudentGrade();
                     interfaceAdmin.uploadDBStudentInfo();
                     interfaceAdmin.uploadDBTeacherInfo();
-           
-          //Need to create the teacher page and then add the login in material. 
                 }
-            else 
-                {
+            else {
                 JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
                 textTeachPassword.setText(null);
                 textTeachEmail.setText(null);
-                }
-            
+                }            
             }
        catch(Exception ex)
         {
@@ -292,7 +288,9 @@ public class Login extends javax.swing.JFrame {
         }
        
     }//GEN-LAST:event_buttAdminLoginActionPerformed
-
+/*
+   Function to create new root login frame. 
+*/   
     private void buttRootUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttRootUserActionPerformed
         try {
             RootLogin interfaceRootLogin = new RootLogin();
@@ -305,6 +303,17 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttRootUserActionPerformed
 
+/*
+   Function to close the pervious window when a new interface is created. 
+*/    
+private void systemExitNewFrame()
+    {
+    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }        
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+// 
     //Interface Variables & Settings
     /**
      * @param args the command line arguments
@@ -362,10 +371,4 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField textTeachEmail;
     private javax.swing.JPasswordField textTeachPassword;
     // End of variables declaration//GEN-END:variables
-
-    private void systemExitNewFrame()
-    {
-    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
 }

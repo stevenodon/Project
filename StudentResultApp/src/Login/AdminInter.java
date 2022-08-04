@@ -28,26 +28,31 @@ import java.math.BigInteger;
  * @author stevenodonoghue
  */
 public class AdminInter extends javax.swing.JFrame {
+/*
+    Connections to database - Fill in on all classes. 
+*/
     private static final String username = "root";
     private static final String password = "Pa55w0rd!";
     private static final String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
-
+/*
+    Constructors for database 
+*/
     Connection sqlCon = null;
     PreparedStatement preState = null;
     ResultSet resultSet = null;
     
     int q, i;
-    /**
-     * Creates new form AdminInter
-     */
-    
-//Creating the Admin User Interface & populate data
+
+/*
+    Creates new form AdminInter
+*/
     public AdminInter() {
         initComponents();
     }
     
-/* Updates the interfaces with database entries*/
-//Adds all students info to adminstrators interface
+/*
+    Getting entries from Student table in database & add to app table
+*/
     public void uploadDBStudentInfo (){
     try {
        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -79,7 +84,9 @@ public class AdminInter extends javax.swing.JFrame {
             
     }
                                                 
-//Adds all students grades to adminstrators interface
+/*
+    Getting entries from StudentGrade table in database & add to app table
+*/
     public void uploadDBStudentGrade () {
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -121,7 +128,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }
    
-//Adds all teacher info to the adminstrators interface    
+/*
+    Getting entries from Teacher table in database & add to app table
+*/   
     public void uploadDBTeacherInfo (){
     try {
        Class.forName("com.mysql.cj.jdbc.Driver");
@@ -153,7 +162,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }
     
-    
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+//     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -678,12 +689,6 @@ public class AdminInter extends javax.swing.JFrame {
         jPanel9.add(jTxtTeachNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 140, -1));
         jPanel9.add(jTxtTeachFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 240, -1));
         jPanel9.add(jTxtTeachLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 250, -1));
-
-        jTxtTeachEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtTeachEmailActionPerformed(evt);
-            }
-        });
         jPanel9.add(jTxtTeachEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 240, -1));
         jPanel9.add(jTeachPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 80, 250, -1));
 
@@ -707,8 +712,12 @@ public class AdminInter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-/*Adding entries into the database*/
-// Adds students info for the add button into table
+//
+//AUTHOR MATERIAL
+//
+/*
+    Add function to add a new student's details
+*/
     private void addNewStudInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewStudInfoActionPerformed
         // TODO add your handling code here:
         try {
@@ -736,9 +745,10 @@ public class AdminInter extends javax.swing.JFrame {
                     (java.util.logging.Level.SEVERE,null, ex);
         }
     }//GEN-LAST:event_addNewStudInfoActionPerformed
-// Adds a student grade into the table
+/*
+    Add function to add a student's grades
+*/
     private void addNewStudGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewStudGradeActionPerformed
-        // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             sqlCon = DriverManager.getConnection(dataCon,username, password);
@@ -773,6 +783,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addNewStudGradeActionPerformed
 
+/*
+    Add function to add a new teacher's details
+*/
     private void addNewTeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewTeachActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -802,7 +815,9 @@ public class AdminInter extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewTeachActionPerformed
 
     
-/*Updating entries into the database*/
+/*
+    Update function to change a student's details.
+*/
     private void updateStudInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudInfoActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -831,8 +846,10 @@ public class AdminInter extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_updateStudInfoActionPerformed
 
+/*
+    Populate textboxes when a row is clicked in the student table in app.
+*/      
     private void jStudentListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStudentListTableMouseClicked
-        // TODO add your handling code here:
        DefaultTableModel RecordTable = (DefaultTableModel)jStudentListTable.getModel();
        int SelectedRows = jStudentListTable.getSelectedRow();
        
@@ -843,6 +860,9 @@ public class AdminInter extends javax.swing.JFrame {
        jTxtStudConNum.setText(RecordTable.getValueAt(SelectedRows,4).toString());
     }//GEN-LAST:event_jStudentListTableMouseClicked
 
+/*
+    Populate textboxes when a row is clicked in the student grade table in app.
+*/     
     private void jStudGradeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jStudGradeTableMouseClicked
        DefaultTableModel RecordTable = (DefaultTableModel)jStudGradeTable.getModel();
        int SelectedRows = jStudGradeTable.getSelectedRow();
@@ -863,6 +883,9 @@ public class AdminInter extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jStudGradeTableMouseClicked
 
+/*
+    Update function to change a teacher's details.
+*/    
     private void UpdateTeachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateTeachActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -892,6 +915,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UpdateTeachActionPerformed
 
+/*
+    Update function to change subject and percentage of a student grade.
+*/    
     private void updateStudGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateStudGradeActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -928,6 +954,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateStudGradeActionPerformed
 
+/*
+    Populate textboxes when a row is clicked on in teacher table.
+*/    
     private void jTeacherListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTeacherListTableMouseClicked
        DefaultTableModel RecordTable = (DefaultTableModel)jTeacherListTable.getModel();
        int SelectedRows = jTeacherListTable.getSelectedRow();
@@ -940,10 +969,9 @@ public class AdminInter extends javax.swing.JFrame {
        jTeachPassword.setText(RecordTable.getValueAt(SelectedRows,5).toString());
     }//GEN-LAST:event_jTeacherListTableMouseClicked
 
-    private void jTxtTeachEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTeachEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtTeachEmailActionPerformed
-
+/*
+    Delete a student record from the system.
+*/    
     private void studDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studDeleteButtonActionPerformed
         DefaultTableModel RecordTable = (DefaultTableModel)jStudentListTable.getModel();
         int SelectedRows = jStudentListTable.getSelectedRow();
@@ -968,6 +996,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_studDeleteButtonActionPerformed
 
+/*
+    Delete a student's grades record from the system.
+*/     
     private void gradeDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gradeDeleteButtonActionPerformed
         DefaultTableModel RecordTable = (DefaultTableModel)jStudGradeTable.getModel();
         int SelectedRows = jStudGradeTable.getSelectedRow();
@@ -992,6 +1023,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_gradeDeleteButtonActionPerformed
 
+/*
+    Delete a teacher record from the system.
+*/     
     private void teachDeleteButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teachDeleteButtActionPerformed
         DefaultTableModel RecordTable = (DefaultTableModel)jTeacherListTable.getModel();
         int SelectedRows = jTeacherListTable.getSelectedRow();
@@ -1016,6 +1050,9 @@ public class AdminInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_teachDeleteButtActionPerformed
 
+/*
+   Function to return to login interfaces (Logout Button) 
+*/     
     private void adminLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLogoutActionPerformed
         // TODO add your handling code here:
         Login returnLogin = new Login();
@@ -1023,6 +1060,17 @@ public class AdminInter extends javax.swing.JFrame {
         systemExitNewFrame();
     }//GEN-LAST:event_adminLogoutActionPerformed
 
+/*
+   Function to close the pervious window when a new interface is created. 
+*/    
+    private void systemExitNewFrame()
+        {
+        WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+        }    
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+// 
     /**
      * @param args the command line arguments
      */
@@ -1130,11 +1178,9 @@ public class AdminInter extends javax.swing.JFrame {
     private javax.swing.JButton updateStudInfo;
     // End of variables declaration//GEN-END:variables
 
-private void systemExitNewFrame()
-    {
-    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
+//
+//AUTHOR MATERIAL
+//
 
 /*public static String getHash(){
     StringBuilder pa = new StringBuilder();

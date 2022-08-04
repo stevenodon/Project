@@ -34,7 +34,7 @@ public class RootInter extends javax.swing.JFrame {
     private static final String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
 
 /*
-    Constructions for database 
+    Constructors for database 
 */
     Connection sqlConn = null;
     PreparedStatement preStatement = null;
@@ -48,7 +48,7 @@ public class RootInter extends javax.swing.JFrame {
     }
     
 /*
-    Getting the data from the administrator table in the database
+    Getting entries from Administrator table in database & add to app table
 */
     public void inputDBAdminInfo (){
     try {
@@ -79,7 +79,9 @@ public class RootInter extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, ex);
         }            
     }
-
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+//    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -206,7 +208,9 @@ public class RootInter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+//
+//AUTHOR MATERIAL
+//
 /*
     Logout button action at top right of frame 
 */
@@ -216,7 +220,6 @@ public class RootInter extends javax.swing.JFrame {
         returnLogin.setVisible(true);
         systemExitNewFrame();
     }//GEN-LAST:event_rootLogoutActionPerformed
-
     
 /*
     Populate textboxes when a row is clicked on in table.
@@ -319,6 +322,18 @@ public class RootInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_adminDeleteInfoActionPerformed
 
+/*
+   Function to close the pervious window when a new interface is created. 
+*/    
+private void systemExitNewFrame()
+    {
+    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
+    
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+//
     /**
      * @param args the command line arguments
      */
@@ -375,13 +390,4 @@ public class RootInter extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtAdminPassword;
     private javax.swing.JButton updateAdminInfo;
     // End of variables declaration//GEN-END:variables
-
-/*
-    Function to close the pervious window when a new interface is created. 
-*/    
-private void systemExitNewFrame()
-    {
-    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
-}
+  }

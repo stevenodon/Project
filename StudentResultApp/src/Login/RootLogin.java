@@ -26,23 +26,27 @@ import java.awt.event.WindowEvent;
  * @author stevenodonoghue
  */
 public class RootLogin extends javax.swing.JFrame {
+/*
+    Connections to database - Fill in on all classes. 
+*/    
     String username = "root";
     String password = "Pa55w0rd!";
     String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
-    
+/*
+    Constructors for database 
+*/    
     Connection sqlCon = null;
     PreparedStatement preState = null;
     ResultSet resultSet = null;
-    
-    int q, i;
-
-    /**
-     * Creates new form RootLogin
-     */
+/*
+    Creates new form RootLogin
+*/
     public RootLogin() {
         initComponents();
     }
-
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+// 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,16 +160,21 @@ public class RootLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+//
+//AUTHOR MATERIAL
+//
+/*
+    Return button action
+*/
     private void buttRootReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttRootReturnActionPerformed
-        //String adminPassword = textAdminPassword.getText();
-        //String adminEmail = textAdminEmail.getText();
         Login backToLogin = new Login ();
         backToLogin.setVisible(true);
         systemExitNewFrame();
     }//GEN-LAST:event_buttRootReturnActionPerformed
-
+/*
+    Login button action 
+*/
     private void buttRootLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttRootLoginActionPerformed
-
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             sqlCon = DriverManager.getConnection(dataCon,username,password);
@@ -174,33 +183,36 @@ public class RootLogin extends javax.swing.JFrame {
             preState.setString(2, textRootPassword.getText());
             resultSet = preState.executeQuery();
 
-            if (resultSet.next())
-            {
+            if (resultSet.next()){
                 textRootPassword.setText(null);
                 textRootEmail.setText(null);
-                //systemExit();
-
                 RootInter interfaceRoot = new RootInter();
                 systemExitNewFrame();
                 interfaceRoot.setVisible(true);
                 interfaceRoot.inputDBAdminInfo();
-
-                //Need to create the teacher page and then add the login in material.
             }
-            else
-            {
+            else{
                 JOptionPane.showMessageDialog(null,"Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
                 textRootPassword.setText(null);
                 textRootEmail.setText(null);
             }
-
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_buttRootLoginActionPerformed
-
+/*
+    Function to close the pervious window when a new interface is created. 
+*/ 
+    private void systemExitNewFrame()
+    {
+    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
+    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
+    }
+//    
+//NETBEANS MATERIAL - DO NOT EDIT
+// 
     /**
      * @param args the command line arguments
      */
@@ -247,11 +259,4 @@ public class RootLogin extends javax.swing.JFrame {
     private javax.swing.JTextField textRootEmail;
     private javax.swing.JPasswordField textRootPassword;
     // End of variables declaration//GEN-END:variables
-
-
-private void systemExitNewFrame()
-    {
-    WindowEvent winClosing = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
 }
