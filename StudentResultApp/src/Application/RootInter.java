@@ -29,8 +29,8 @@ public class RootInter extends javax.swing.JFrame {
 /*
     Connections to database - Fill in on all classes. 
 */
-    private static final String username = "root";
-    private static final String password = "Pa55w0rd!";
+    private static final String username = "";
+    private static final String password = "";
     private static final String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
 
 /*

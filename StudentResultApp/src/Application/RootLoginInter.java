@@ -29,8 +29,8 @@ public class RootLoginInter extends javax.swing.JFrame {
 /*
     Connections to database - Fill in on all classes. 
 */    
-    String username = "root";
-    String password = "Pa55w0rd!";
+    String username = "";
+    String password = "";
     String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
 /*
     Constructors for database 

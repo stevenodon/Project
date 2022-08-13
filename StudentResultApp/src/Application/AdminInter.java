@@ -31,8 +31,8 @@ public class AdminInter extends javax.swing.JFrame {
 /*
     Connections to database - Fill in on all classes. 
 */
-    private static final String username = "root";
-    private static final String password = "Pa55w0rd!";
+    private static final String username = "";
+    private static final String password = "";
     private static final String dataCon = "jdbc:mysql://localhost:3306/ResultsSystem";
 /*
     Constructors for database 
@@ -1174,30 +1174,4 @@ public class AdminInter extends javax.swing.JFrame {
     private javax.swing.JButton updateStudInfo;
     // End of variables declaration//GEN-END:variables
 
-//
-//AUTHOR MATERIAL
-//
-
-/*public static String getHash(){
-    StringBuilder pa = new StringBuilder();
-    pa.append(toString(jTeachPassword.getText()));
-    
-    String passToChange = ;
-    String generatePassword = null;
-      try {
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(passToChange.getBytes());
-        byte [] bytes = md.digest();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < bytes.length; i++){
-            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16). substring(1));
-        }
-        generatePassword = sb.toString();
-        
-      }
-      catch (NoSuchAlgorithmException e) {
-          e.printStackTrace();
-      }
-      return generatePassword;
-    }*/
 }
